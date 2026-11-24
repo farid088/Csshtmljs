@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nar Shop – Online Shopping</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+
+  <!-- 1. HEADER -->
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="#">
+        <span class="logo" aria-hidden="true"></span>
+        <span class="brand-name">Nar Shop</span>
+      </a>
+
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search products by name…" autocomplete="off">
+      </div>
+
+      <button type="button" id="cartToggle" class="cart-btn" aria-label="Shopping Cart">
+        <span class="cart-icon">🛒</span>
+        <span>Cart</span>
+        <span id="cartCount" class="cart-count">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- CART PANEL (slideToggle) -->
+  <aside id="cartPanel" class="cart-panel" style="display:none;">
+    <div class="cart-head">
+      <h2>Your cart</h2>
+      <button type="button" id="cartClose" class="icon-btn" aria-label="Close cart">✕</button>
+    </div>
+    <div id="cartItems" class="cart-items"></div>
+    <p id="cartEmpty" class="cart-empty">Your cart is empty</p>
+    <div id="cartFooter" class="cart-footer">
+      <div class="cart-total"><span>Total</span><strong id="cartTotal">0.00 ₼</strong></div>
+      <button type="button" id="clearCart" class="btn btn-ghost">Clear Cart</button>
+    </div>
+  </aside>
+
+  <main class="wrap">
+
+    <!-- 2. TOOLBAR -->
+    <section class="toolbar">
+      <div class="toolbar-info">
+        <h1>Products</h1>
+        <p>Total products: <strong id="totalCount">0</strong> · Showing: <strong id="shownCount">0</strong></p>
+      </div>
+
+      <div class="toolbar-controls">
+        <label class="field-inline">
+          <span>Category</span>
+          <select id="categoryFilter"></select>
+        </label>
+        <label class="field-inline">
+          <span>Price</span>
+          <select id="sortSelect">
+            <option value="default">Default</option>
+            <option value="asc">Low to high</option>
+            <option value="desc">High to low</option>
+          </select>
+        </label>
+        <button type="button" id="toggleFormBtn" class="btn btn-primary">+ Add product</button>
+      </div>
+    </section>
+
+    <!-- 4. ADD / EDIT FORM -->
+    <section id="formPanel" class="form-panel" style="display:none;">
+      <h2 id="formTitle">Add a new product</h2>
+      <form id="productForm" novalidate>
+        <input type="hidden" id="editId" value="">
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="pName">Product Name</label>
+            <input type="text" id="pName" placeholder="e.g. Wireless headphones">
+            <small class="error" id="errName"></small>
+          </div>
+
+          <div class="form-group">
+            <label for="pPrice">Price (₼)</label>
+            <input type="text" inputmode="decimal" id="pPrice" placeholder="e.g. 49.90">
+            <small class="error" id="errPrice"></small>
+          </div>
+
+          <div class="form-group">
+            <label for="pCategory">Category</label>
+            <input type="text" id="pCategory" placeholder="e.g. Electronics" list="categoryList">
+            <datalist id="categoryList"></datalist>
+            <small class="error" id="errCategory"></small>
+          </div>
+
+          <div class="form-group">
+            <label for="pImage">Image URL</label>
+            <input type="text" id="pImage" placeholder="https://…">
+            <small class="error" id="errImage"></small>
+          </div>
+
+          <div class="form-group form-wide">
+            <label for="pDesc">Description</label>
+            <textarea id="pDesc" rows="3" placeholder="Short description of the product"></textarea>
+            <small class="error" id="errDesc"></small>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" id="submitBtn" class="btn btn-primary">Add product</button>
+          <button type="button" id="cancelEdit" class="btn btn-ghost">Cancel</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- PRODUCT LIST -->
+    <section id="productGrid" class="grid"></section>
+    <p id="noProducts" class="no-products" style="display:none;">No products found</p>
+
+  </main>
+
+  <div id="toast" class="toast" style="display:none;"></div>
+
+  <footer class="site-footer">
+    <div class="wrap">Nar Shop · HTML, CSS &amp; jQuery · data is saved in localStorage</div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="./assets/js/script.js"></script>
+</body>
+</html>
